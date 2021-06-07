@@ -24,9 +24,6 @@ Documentação da API: https://pokeapi.co/
 
 ![](https://i.imgur.com/QmJty2O.png)
 
-
-# CONFERIR TAGS
-
 ---
 
 Preencha a checklist para finalizar o exercício:
