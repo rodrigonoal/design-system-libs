@@ -2,19 +2,21 @@ import React, { useState, useEffect } from 'react';
 import Navbar from './components/navbar'
 import Searchbox from './components/searchbox';
 import Bigcard from './components/card';
+import CustomAlert from './components/customAlert';
 import getPokemon from './utilities/pokeAPI'
 import "./App.css";
 import { useLocalStorage } from 'react-use';
-
-
-
-
 
 
 export default function App() {
   const [cacheSearch, setCacheSearch, removeCacheSearch] = useLocalStorage('pokemonSearch', []);
   const [pokemon, setPokemon] = useState({});
   const [search, setSearch] = useState('');
+  const [erro, setErro] = useState(false)
+
+  useEffect(() => {
+    getPokemon('pikachu');
+  }, []);
 
 
   useEffect(() => {
@@ -30,6 +32,7 @@ export default function App() {
   };
 
   async function handleFindPokemon() {
+    setErro(false);
     const result = checkInCache();
 
     if (result) {
@@ -40,11 +43,10 @@ export default function App() {
 
         setPokemon(pokemon)
       } catch (error) {
-        console.log(error.message)
+        setErro(error)
       };
     };
   };
-
 
 
   return (
@@ -59,6 +61,7 @@ export default function App() {
         search={search}
         setSearch={setSearch}
         handleFindPokemon={handleFindPokemon} />
+      {erro && <CustomAlert />}
     </>
   );
 };

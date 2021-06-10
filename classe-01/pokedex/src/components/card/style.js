@@ -7,9 +7,10 @@ const useStyles = makeStyles((theme) => ({
         marginBottom: 20,
         marginLeft: 'auto', 
         marginRight: 'auto',
+        padding: 10,
     },
     media: {
-        height: 'auto',
+        maxHeight: 'auto',
         width: '100%'
     },
     cardHeader: {
